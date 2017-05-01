@@ -19,14 +19,15 @@ void drawPendulum(int angle){
 	glColor3f(0,0,0);
 	int x1=300,y1=330;
 	int x2,y2,line=250;
-	drawCircle(x1,y1,40);
+	int r1=20,r2=50;
+	drawCircle(x1,y1,r1);
 	x2 = x1-line*cos(theta);
 	y2 = y1-line*sin(theta);
 	glBegin(GL_LINES);
-	glVertex2f(x1,y1);
-	glVertex2f(x2,y2);
+	glVertex2f(x1-r1*cos(theta),y1-r1*sin(theta));
+	glVertex2f(x2+r2*cos(theta),y2+r2*sin(theta));
 	glEnd();
-	drawCircle(x2,y2,50);
+	drawCircle(x2,y2,r2);
 }
 
 void drawPendulum(){
