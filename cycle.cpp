@@ -3,6 +3,11 @@
 #include <unistd.h>
 #include <random>
 
+using namespace std;
+
+int x = 0;
+int y = 20;
+
 void drawCircle(int xc,int yc, int r){
 	glBegin(GL_LINE_LOOP);
 	for(int i=0;i<=360;i++){
@@ -22,7 +27,9 @@ void drawSpokes(int xc,int yc,int r, int angle){
 	glEnd();
 }
 
-void drawCycle(int xc,int yc){
+void drawCycle(int xc,int yc,int angle){
+	xc+=27;
+	yc+=27;
 
 	drawCircle(xc,yc,27);	
 	drawCircle(xc+80,yc,27);	
@@ -67,12 +74,49 @@ void drawCycle(int xc,int yc){
 }
 
 void draw(){
+	int drawX=x,drawY=y;
 	glClearColor(1,1,1,1);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(0.4,0.3,0.2);
-	drawCycle(50,50);
+
+	glBegin(GL_LINE_LOOP);
+	glVertex2i(0,20);
+	glVertex2i(100,20);
+	glVertex2i(400,120);
+	glVertex2i(600,120);
+	glVertex2i(800,20);
+	glEnd();
+
 	glColor3f(0.2,0.5,0.7);
+	glPushMatrix();
+	x++;
+	float angle=0;
+
+	glTranslatef(min(x,100),y,0);
+	if(x>100){
+		angle=19.5;
+		glRotatef(angle,0,0,1);
+		glTranslatef(min(x-100,300),0,0);
+	}
+	if(x>400){
+		glRotatef(-angle,0,0,1);
+		glTranslatef(min(x-400,200),0,0);
+		angle=0;
+	}
+	if(x>600){
+		angle=335;
+		glRotatef(angle,0,0,1);
+		glTranslatef(x-600,0,0);
+	}
+	if(x>=800){
+		x=0;
+		y=20;
+		angle=0;
+	}
+	drawCycle(0,0,angle);
+	glPopMatrix();
 	glFlush();
+	usleep(10000);
 }
 
 int main(int argc,char* argv[]){
