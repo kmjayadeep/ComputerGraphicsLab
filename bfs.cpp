@@ -109,7 +109,7 @@ void draw(){
 int main(int argc,char* argv[]){
 	glutInit(&argc,argv);
 	glutInitWindowSize(800,400);
-	glutCreateWindow("DFS");
+	glutCreateWindow("BFS");
 	gluOrtho2D(0,800,0,400);
 	glutDisplayFunc(draw);
 	glutMainLoop();
