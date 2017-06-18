@@ -133,7 +133,6 @@ void draw(){
 	g.input();
 	g.drawGraph();
 	g.krushkalMST();
-	usleep(2000000);
 	glFlush();
 }
 
