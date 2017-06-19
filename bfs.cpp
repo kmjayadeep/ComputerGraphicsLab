@@ -89,7 +89,11 @@ public:
 			q.pop();
 			drawCircle(coordinates[node].x,coordinates[node].y,20,processedColor);
 			for (int i=0;i<adj[node].size();i++) {
-				q.push(adj[node][i]);
+				int nn = adj[node][i];
+				if(!visited[nn]){
+					visited[nn] = true;
+					q.push(nn);
+				}
 			}
 		}
 	}
