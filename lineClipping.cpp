@@ -5,9 +5,6 @@
 
 using namespace std;
 
-
-
-
 const int INSIDE = 0;
 const int LEFT = 1;
 const int RIGHT = 2;
